@@ -1,0 +1,47 @@
+<div class="row">
+  <form class="form-horizontal">
+    <div class="form-group">
+      <label for="codigo" class="col-sm-2 control-label">Código:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control disabled" id="codigo" readonly ng-model="pessoa.id">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="nome" class="col-sm-2 control-label">Nome:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="nome" placeholder="Nome" ng-model="pessoa.nome">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email" class="col-sm-2 control-label">Email:</label>
+      <div class="col-sm-10">
+        <input type="email" class="form-control" id="email" placeholder="Email" ng-model="pessoa.email">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="telefone" class="col-sm-2 control-label">Telefone:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="telefone" placeholder="Telefone" ng-model="pessoa.telefone">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <label class="radio-inline">
+          <input type="radio" name="funcao" id="funcao1" ng-model="pessoa.funcao" value="MINISTRO"> MINISTRO
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="funcao" id="funcao2" ng-model="pessoa.funcao" value="COROINHA"> COROINHA
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="funcao" id="funcao3" ng-model="pessoa.funcao" value="PADRE"> PADRE
+        </label>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" ng-click="salvar()" class="btn btn-primary">Salvar</button>
+      </div>
+    </div>
+  </form>
+</div>
+
