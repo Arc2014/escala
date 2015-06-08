@@ -8,7 +8,7 @@
  * Controller of the escalaAppApp
  */
 angular.module('escalaAppApp')
-  .controller('ListapessoaCtrl', function ($scope) {
+  .controller('ListaPessoaCtrl', ['$scope', function ($scope) {
     $scope.awesomeThings = ['HTML5 Boilerplate','AngularJS', 'Karma'];
 
-  });
+  }]);

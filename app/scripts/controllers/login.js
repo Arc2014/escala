@@ -18,10 +18,10 @@ angular.module('escalaAppApp')
     $scope.createAccount = function(email, pass, confirm) {
       $scope.err = null;
       if( !pass ) {
-        $scope.err = 'Please enter a password';
+        $scope.err = 'O preenchimento da senha e obrigatório!';
       }
       else if( pass !== confirm ) {
-        $scope.err = 'Passwords do not match';
+        $scope.err = 'As senhas não conferem!';
       }
       else {
         Auth.$createUser({email: email, password: pass})
@@ -34,7 +34,7 @@ angular.module('escalaAppApp')
       }
 
       function createProfile(user) {
-        var ref = Ref.child('users', user.uid), def = $q.defer();
+        var ref = Ref.child('users/' + user.uid), def = $q.defer();
         ref.set({email: email, name: firstPartOfEmail(email)}, function(err) {
           $timeout(function() {
             if( err ) {
