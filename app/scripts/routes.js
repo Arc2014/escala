@@ -73,6 +73,10 @@ angular.module('escalaAppApp')
         templateUrl: 'views/pessoa.html',
         controller: 'PessoaCtrl'
       })
+      .when('/listaPessoa', {
+        templateUrl: 'views/listapessoa.html',
+        controller: 'ListapessoaCtrl'
+      })
       .otherwise({redirectTo: '/'});
   }])
 
