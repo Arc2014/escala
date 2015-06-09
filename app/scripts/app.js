@@ -19,6 +19,8 @@ angular.module('escalaAppApp', [
     'firebase',
     'firebase.ref',
     'firebase.auth'
-  ]).run(['$rootScope', 'Auth', function ($rootScope, Auth) {
-    $rootScope.logout = function() { Auth.$unauth(); };
+  ]).run(['$rootScope', 'Auth', '$location', function ($rootScope, Auth, $location) {
+    $rootScope.logout = function() { Auth.$unauth();
+      $location.path('/');
+    };
 }]);
