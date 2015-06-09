@@ -7,8 +7,8 @@
  * # pessoa
  * Service in the escalaAppApp.
  */
-angular.module('escalaAppApp').service('PessoaService', ['Ref', '$firebase', function (Ref, $firebase) {
-
+angular.module('escalaAppApp').service('PessoaService', ['Ref', '$firebase', '$firebaseArray', function (Ref, $firebase, $firebaseArray) {
+  var pessoaRef = '';
   var gerarId = function (tipo) {
     return tipo.substr(0,1) + new Date().getTime().toString();
   };
@@ -16,8 +16,13 @@ angular.module('escalaAppApp').service('PessoaService', ['Ref', '$firebase', fun
   return {
     salvar: function (pessoa) {
       pessoa.uid = gerarId(pessoa.funcao);
-      var pessoaRef = Ref.child('pessoa/' + pessoa.uid);
+      pessoaRef = Ref.child('pessoa/' + pessoa.uid);
       pessoaRef.set(pessoa);
+    },
+
+    listar: function (){
+      pessoaRef = Ref.child('pessoa');
+      return $firebaseArray(pessoaRef);
     }
   };
 

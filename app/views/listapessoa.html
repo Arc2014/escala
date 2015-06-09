@@ -15,12 +15,12 @@
       <th class="text-center">Email</th>
       <th class="text-center">Telefone</th>
       <th class="text-center">Ações</th>
-      <tr class="info">
-        <td class="col-md-1" >...</td>
-        <td class="col-md-3">...</td>
-        <td class="col-md-1">...</td>
-        <td class="col-md-4">...</td>
-        <td class="col-md-2">...</td>
+      <tr class="info" ng-repeat="p in pessoas" >
+        <td class="col-md-1" >{{p.uid}}</td>
+        <td class="col-md-3">{{p.nome}}</td>
+        <td class="col-md-1">{{p.funcao}}</td>
+        <td class="col-md-4">{{p.email}}</td>
+        <td class="col-md-2">{{p.telefone}}</td>
         <td class="col-md-1 input-group-btn">
           <button type="button" class="small btn btn-warning glyphicon glyphicon glyphicon-pencil"/>
           <button type="button" class="small btn btn-danger glyphicon glyphicon-trash" />
