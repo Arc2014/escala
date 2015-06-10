@@ -3,7 +3,7 @@
     <h1 class="h1">Pessoas Cadastradas</h1>
   </div>
   <div class="col-md-2 text-right">
-    <a href="#/pessoa" class="btn btn-success">Nova</a>
+    <a href="#/pessoa" class="btn btn-success">Cadastrar</a>
   </div>
 </div>
 <div class="row">
@@ -13,17 +13,17 @@
       <th class="text-center">Nome</th>
       <th class="text-center">Função</th>
       <th class="text-center">Email</th>
-      <th class="text-center">Telefone</th>
+      <th class="text-center">Disponibilidade</th>
       <th class="text-center">Ações</th>
-      <tr class="info" ng-repeat="p in pessoas" >
+      <tr ng-repeat="p in pessoas" ng-class-odd="'info'" ng-class-even="''">
         <td class="col-md-1" >{{p.uid}}</td>
         <td class="col-md-3">{{p.nome}}</td>
         <td class="col-md-1">{{p.funcao}}</td>
         <td class="col-md-4">{{p.email}}</td>
-        <td class="col-md-2">{{p.telefone}}</td>
+        <td class="col-md-2">{{p.semana.toString()}}</td>
         <td class="col-md-1 input-group-btn">
-          <button type="button" class="small btn btn-warning glyphicon glyphicon glyphicon-pencil"/>
-          <button type="button" class="small btn btn-danger glyphicon glyphicon-trash" />
+          <a href="#/pessoa/{{p.uid}}" class="small btn btn-warning glyphicon glyphicon glyphicon-pencil"/>
+          <button type="button" class="small btn btn-danger glyphicon glyphicon-trash" ng-click="pessoas.$remove(p)"/>
         </td>
       </tr>
     </table>
