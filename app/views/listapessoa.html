@@ -22,8 +22,8 @@
         <td class="col-md-4">{{p.email}}</td>
         <td class="col-md-2"><span class="col-md-4" ng-repeat="s in p.semana" ng-if="s.escolhido">{{ s.dia }}</span></td>
         <td class="col-md-1 input-group-btn">
-          <a href="#/pessoa/{{p.uid}}" class="small btn btn-warning glyphicon glyphicon glyphicon-pencil"/>
-          <button type="button" class="small btn btn-danger glyphicon glyphicon-trash" ng-click="pessoas.$remove(p)"/>
+          <a href="#/pessoa/{{p.uid}}" class="btn btn-warning glyphicon glyphicon-pencil"></a>
+          <button type="button" class="btn btn-danger glyphicon glyphicon-trash" ng-click="pessoas.$remove(p)"/>
         </td>
       </tr>
     </table>

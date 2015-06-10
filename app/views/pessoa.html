@@ -1,9 +1,13 @@
 <div class="row">
   <ul ng-messages="pessoaForm.$error" role="alert" >
-    <li ng-message="required" class="alert-danger">Campos com * são de preenchimento obrigatório!</li>
-    <li ng-message="email" class="alert-danger">Email inválido!</li>
+    <li ng-message="required" class="alert alert-danger">Campos com * são de preenchimento obrigatório!</li>
+    <li ng-message="email" class="alert alert-danger">Email inválido!</li>
   </ul>
-
+  <ul class="alert alert-danger" data-ng-show="mensagensErro.length">
+    <li data-ng-repeat="erro in mensagensErro">{{ erro }}</li>
+  </ul>
+  <div class="alert alert-success" data-ng-show="mensagemSucesso">{{mensagemSucesso}}</div>
+  <div class="clearfix"></div>
 </div>
 <div class="row">
   <form id="pessoaForm" name="pessoaForm" class="form-horizontal">
@@ -55,7 +59,7 @@
       </div>
     </div>
     <div class="row text-center col-sm-12">
-      <button ng-disabled="!pessoaForm.$valid" type="submit" ng-click="salvar()" class="btn btn-primary">Salvar</button>
+      <button ng-disabled="pessoaForm.$invalid" type="submit" ng-click="salvar()" class="btn btn-primary">Salvar</button>
       <a href="#/listaPessoa" class="btn btn-warning"> Voltar </a>
     </div>
   </form>

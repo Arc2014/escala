@@ -12,6 +12,8 @@ angular.module('escalaAppApp')
     function ($scope, $routeParams, $location, Ref, $firebaseObject) {
       $scope.awesomeThings = ['HTML5 Boilerplate','AngularJS', 'Karma'];
       var uid;
+      $scope.mensagemSucesso = '';
+      $scope.mensagensErro = [];
       $scope.semana = [
       {dia:'DOM', escolhido: false},
       {dia:'SEG', escolhido: false},
@@ -34,11 +36,17 @@ angular.module('escalaAppApp')
       console.log('Pessoas', $scope.pessoa);
 
       $scope.salvar = function () {
-          $scope.pessoa.semana = $scope.semana;
+        $scope.mensagemSucesso = '';
+        $scope.mensagensErro = [];
+        $scope.pessoa.semana = $scope.semana;
           if(uid) {
             $scope.pessoa.uid = uid;
           }
-          $scope.pessoa.$save();
+          $scope.pessoa.$save().then(function () {
+            $scope.mensagemSucesso = 'Pessoa cadastrada com sucesso!';
+          }).catch(function () {
+            $scope.mensagensErro.push('Ocorreu um erro ao tentar salvar esta Pessoa');
+          });
       };
 
   }]);
