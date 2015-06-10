@@ -8,9 +8,9 @@
  * Controller of the escalaAppApp
  */
 angular.module('escalaAppApp')
-  .controller('ListaPessoaCtrl', ['$scope', 'PessoaService', function ($scope, PessoaService) {
+  .controller('ListaPessoaCtrl', ['$scope','Ref', '$firebaseArray', function ($scope, Ref, $firebaseArray) {
     $scope.awesomeThings = ['HTML5 Boilerplate','AngularJS', 'Karma'];
 
-    $scope.pessoas = PessoaService.listar();
+    $scope.pessoas = $firebaseArray(Ref.child('pessoa'));
 
   }]);
