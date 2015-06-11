@@ -18,7 +18,9 @@ angular.module('escalaAppApp', [
     'ngTouch',
     'firebase',
     'firebase.ref',
-    'firebase.auth'
+    'firebase.auth',
+    'ui.calendar',
+    'ui.bootstrap'
   ]).run(['$rootScope', 'Auth', '$location', function ($rootScope, Auth, $location) {
     $rootScope.logout = function() { Auth.$unauth();
       $location.path('/');

@@ -29,15 +29,15 @@ angular.module('escalaAppApp')
         controller: 'AccountCtrl'
       })
       .when('/pessoa', {
-        templateUrl: 'views/pessoa.html',
+        templateUrl: 'views/pessoa/pessoa.html',
         controller: 'PessoaCtrl'
       })
       .when('/pessoa/:uid', {
-        templateUrl: 'views/pessoa.html',
+        templateUrl: 'views/pessoa/pessoa.html',
         controller: 'PessoaCtrl'
       })
       .when('/listaPessoa', {
-        templateUrl: 'views/listapessoa.html',
+        templateUrl: 'views/pessoa/listapessoa.html',
         controller: 'ListaPessoaCtrl'
       })
       .otherwise({redirectTo: '/'});

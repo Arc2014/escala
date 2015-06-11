@@ -1,12 +1,5 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name escalaAppApp.controller:PessoaCtrl
- * @description
- * # PessoaCtrl
- * Controller of the escalaAppApp
- */
 angular.module('escalaAppApp')
   .controller('PessoaCtrl', ['$scope', '$routeParams', '$location', 'Ref', '$firebaseObject',
     function ($scope, $routeParams, $location, Ref, $firebaseObject) {
@@ -33,8 +26,6 @@ angular.module('escalaAppApp')
         $scope.pessoa = $firebaseObject(Ref.child('pessoa').child(uid));
       }
 
-      console.log('Pessoas', $scope.pessoa);
-
       $scope.salvar = function () {
         $scope.mensagemSucesso = '';
         $scope.mensagensErro = [];
@@ -48,5 +39,9 @@ angular.module('escalaAppApp')
             $scope.mensagensErro.push('Ocorreu um erro ao tentar salvar esta Pessoa');
           });
       };
+
+      $(function () {
+        $('#abas a:last').tab('show');
+      });
 
   }]);
