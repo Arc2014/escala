@@ -13,14 +13,12 @@
       <th class="text-center">Nome</th>
       <th class="text-center">Função</th>
       <th class="text-center">Email</th>
-      <th class="text-center">Disponibilidade</th>
       <th class="text-center">Ações</th>
       <tr ng-repeat="p in pessoas | reverse" ng-class-odd="'info'" ng-class-even="''">
         <td class="col-md-1" >{{p.uid}}</td>
         <td class="col-md-3">{{p.nome}}</td>
         <td class="col-md-1">{{p.funcao}}</td>
         <td class="col-md-4">{{p.email}}</td>
-        <td class="col-md-2"><span class="col-md-4" ng-repeat="s in p.semana" ng-if="s.escolhido">{{ s.dia }}</span></td>
         <td class="col-md-1 input-group-btn">
           <a href="#/pessoa/{{p.uid}}" class="btn btn-warning glyphicon glyphicon-pencil"></a>
           <button type="button" class="btn btn-danger glyphicon glyphicon-trash" ng-click="pessoas.$remove(p)"/>
