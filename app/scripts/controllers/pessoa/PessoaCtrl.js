@@ -42,6 +42,15 @@ angular.module('escalaAppApp')
         $scope.impedimentos.push(json);
       };
 
+      function eventClick (date, jsEvent, view) {
+        var i;
+        for(i = 0; i < $scope.impedimentos.length; i++){
+          if($scope.impedimentos[i].start.format() === date.start.format()){
+            $scope.impedimentos.splice(i,1);
+          }
+        }
+      };
+
       /* config object */
       $scope.uiConfig = {
         calendar:{
@@ -50,6 +59,7 @@ angular.module('escalaAppApp')
           height: 450,
           editable: true,
           dayClick: dayClick,
+          eventClick: eventClick,
           events : $scope.impedimentos,
           header:{
             left: 'title',

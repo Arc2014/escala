@@ -14,7 +14,7 @@
       <th class="text-center">Função</th>
       <th class="text-center">Email</th>
       <th class="text-center">Ações</th>
-      <tr ng-repeat="p in pessoas | reverse" ng-class-odd="'info'" ng-class-even="''">
+      <tr ng-repeat="p in pessoas | reverse" class="text-center" ng-class-odd="'info'" ng-class-even="''">
         <td class="col-md-1" >{{p.uid}}</td>
         <td class="col-md-3">{{p.nome}}</td>
         <td class="col-md-1">{{p.funcao}}</td>
