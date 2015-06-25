@@ -25,12 +25,12 @@
       <div class="container-fluid">
           <ul class="nav navbar-nav navbar-fixed-top">
             <li class="active"><a href="#/">Início</a></li>
-            <li class="dropdown">
+            <li ng-show-auth ="" class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Menu <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <!-- //angularfire -->
-                <li><a ng-show-auth ="" href="#/listaPessoa">Manter Pessoas</a></li>
-                <li><a ng-show-auth ="" href="#/account">Minha Conta</a></li>
+                <li><a href="#/listaPessoa">Manter Pessoas</a></li>
+                <li><a href="#/account">Minha Conta</a></li>
               </ul>
             </li>
             <li ng-show-auth ="" class=" navbar navbar-right" style="margin-right: 30px; margin-top: 5px;"><button role="button" ng-click="logout()" class="btn btn-danger">Sair</button></li>

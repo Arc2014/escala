@@ -65,6 +65,15 @@
           </label>
         </div>
       </div>
+
+      <div class="form-group" ng-show="pessoa.funcao === 'MINISTRO'">
+        <label for="telefone" class="col-sm-2 control-label">Par de Preferência:</label>
+
+        <div class="col-sm-3">
+          <select type="text" class="form-control" id="par" placeholder="Telefone" ng-model="pessoa.par"
+                  ng-options="ministro.nome for ministro in ministros track by ministro.uid"/>
+        </div>
+      </div>
       <div class="row text-center col-sm-12">
         <button ng-disabled="pessoaForm.$invalid" type="submit" ng-click="salvar()" class="btn btn-primary">Salvar
         </button>
