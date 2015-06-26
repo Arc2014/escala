@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="panel panel-default">
+    <div class="panel-heading"><h4>Cadastrar Escala</h4></div>
+  </div>
+  <div ng-messages="escalaForm.$error" ng-show="escalaForm.$dirty" role="alert" class="text-center">
+    <div ng-message="required" class="alert alert-danger">Campos com * são de preenchimento obrigatório!</div>
+  </div>
+  <div class="alert alert-danger text-center" data-ng-show="mensagensErro.length">
+    <div data-ng-repeat="erro in mensagensErro">{{ erro }}</div>
+  </div>
+  <div class="alert alert-success text-center" data-ng-show="mensagemSucesso">{{mensagemSucesso}}</div>
+  <div class="clearfix"></div>
+</div>
+  <div id="dados" role="tabpanel" class="tab-pane active row">
+    <form id="escalaForm" name="escalaForm" class="form-horizontal">
+
+      <div class="form-group">
+        <label for="codigo" class="col-sm-2 control-label">Código:</label>
+
+        <div class="col-sm-10">
+          <input type="text" class="form-control disabled" id="codigo" readonly ng-model="escala.uid">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="mes" class="col-sm-2 control-label">Mês: <span style="color: #ac2925">*</span></label>
+
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="mes" placeholder="Mes" ng-model="escala.mes" required/>
+        </div>
+      </div>
+
+      <div class="row text-center col-sm-12">
+        <button ng-disabled="escalaForm.$invalid" type="submit" ng-click="salvar()" class="btn btn-primary">Salvar
+        </button>
+        <a href="#/listaEscala" class="btn btn-default"> Voltar </a>
+      </div>
+    </form>
+  </div>
+
+<div class="clearfix"></div>

@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('escalaAppApp')
-  .controller('PessoaCtrl', ['$scope', '$routeParams', '$location', 'Ref', '$firebaseObject', 'uiCalendarConfig', '$firebaseArray',
-    function ($scope, $routeParams, $location, Ref, $firebaseObject, uiCalendarConfig, $firebaseArray) {
+  .controller('PessoaCtrl', ['$scope', '$routeParams', 'Ref', '$firebaseObject', 'uiCalendarConfig', '$firebaseArray',
+    function ($scope, $routeParams, Ref, $firebaseObject, uiCalendarConfig, $firebaseArray) {
       var uid;
       $scope.agenda = $scope.agenda || [];
       $scope.mensagemSucesso = '';
@@ -88,5 +88,4 @@ angular.module('escalaAppApp')
       };
 
       $scope.ministros = $firebaseArray(Ref.child('pessoa').orderByChild('funcao').equalTo('MINISTRO'));
-      console.log($scope.ministros);
   }]);
