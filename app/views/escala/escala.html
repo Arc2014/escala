@@ -15,19 +15,58 @@
     <form id="escalaForm" name="escalaForm" class="form-horizontal">
 
       <div class="form-group">
-        <label for="codigo" class="col-sm-2 control-label">Código:</label>
-
-        <div class="col-sm-10">
-          <input type="text" class="form-control disabled" id="codigo" readonly ng-model="escala.uid">
+        <label class="col-sm-1 control-label text-left">Código: {{escala.uid}}</label>
+        <label for="mes" class="col-sm-1 control-label">Mês: <span style="color: #ac2925">*</span></label>
+        <div class="col-sm-2">
+          <select required id="mes" class="form-control">
+            <option value="">Selecione...</option>
+            <option value="1">Janeiro</option>
+            <option value="2">Fevereiro</option>
+            <option value="3">Março</option>
+            <option value="4">Abril</option>
+            <option value="5">Maio</option>
+            <option value="6">Junho</option>
+            <option value="7">Julho</option>
+            <option value="8">Agosto</option>
+            <option value="9">Setembro</option>
+            <option value="10">Outubro</option>
+            <option value="11">Novembro</option>
+            <option value="12">Dezembro</option>
+          </select>
+        </div>
+        <label for="ano" class="col-sm-1 control-label">Ano: <span style="color: #ac2925">*</span></label>
+        <div class="col-sm-3">
+          <input type="number" class="form-control" id="ano" placeholder="Ano" ng-model="escala.ano" required/>
+        </div>
+        <label for="ano" class="col-sm-1 control-label">Igreja: <span style="color: #ac2925">*</span></label>
+        <div class="col-sm-3">
+          <select required class="form-control">
+            <option value="">Selecione...</option>
+            <option value="MATRIZ">Matriz</option>
+            <option value="ROSARIO">Rosário</option>
+          </select>
         </div>
       </div>
-
-      <div class="form-group">
-        <label for="mes" class="col-sm-2 control-label">Mês: <span style="color: #ac2925">*</span></label>
-
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="mes" placeholder="Mes" ng-model="escala.mes" required/>
-        </div>
+      <div class="row">
+        <table class="table table-hover">
+          <th class="text-center">Dia/hora</th>
+          <th class="text-center">Padre</th>
+          <th class="text-center">Ministros</th>
+          <th class="text-center">Coroinhas</th>
+          <th class="text-center">
+            <button title="Adicionar Novo" type="button" class="btn btn-primary glyphicon glyphicon-play-circle" data-toggle="modal" data-target="#idModalEvento"/>
+          </th>
+          <tr class="text-center" ng-class-odd="'info'" ng-class-even="''">
+            <td class="col-md-1" >teste</td>
+            <td class="col-md-3">teste</td>
+            <td class="col-md-1">teste</td>
+            <td class="col-md-4">teste</td>
+            <td class="col-md-1 input-group-btn">
+              <a href="#/escala/{{e.uid}}" class="btn btn-warning glyphicon glyphicon-pencil"></a>
+              <button type="button" class="btn btn-danger glyphicon glyphicon-trash" ng-click="escalas.$remove(e)"/>
+            </td>
+          </tr>
+        </table>
       </div>
 
       <div class="row text-center col-sm-12">
@@ -38,4 +77,48 @@
     </form>
   </div>
 
-<div class="clearfix"></div>
+<div  class="clearfix"></div>
+
+<div id="idModalEvento" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Evento</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group dropdown">
+          <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#">
+            <div class="input-group"><input placeholder="DATA/HORA:" type="text"  class="form-control" value="{{evento.dataHora | date: 'dd-MM-yyyy - H:mm'}}"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            </div>
+          </a>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+            <datetimepicker data-ng-model="evento.dataHora" data-datetimepicker-config="{ dropdownSelector: '#dropdown2', minView: 'hour' }"/>
+          </ul>
+        </div>
+        <div class="form-group">
+          <select class="form-control" id="padre" ng-model="evento.padres"
+                  ng-options="padre.nome for padre in padres track by padre.uid">
+            <option>PADRES</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <select type="text" class="form-control" id="ministro" placeholder="MINISTROS" ng-model="evento.ministros"
+                  ng-options="ministro.nome for ministro in ministros track by ministro.uid">
+            <option>MINISTROS</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <select type="text" class="form-control" id="coroinha" placeholder="MINISTROS" ng-model="evento.ministros"
+                  ng-options="ministro.nome for ministro in ministros track by ministro.uid">
+            <option>COROINHAS</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

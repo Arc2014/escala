@@ -6,4 +6,9 @@ angular.module('escalaAppApp')
     var uid;
     $scope.mensagemSucesso = '';
     $scope.mensagensErro = [];
+
+    $scope.padres = $firebaseArray(Ref.child('pessoa').orderByChild('funcao').equalTo('PADRE'));
+    $scope.coroinhas = $firebaseArray(Ref.child('pessoa').orderByChild('funcao').equalTo('COROINHA'));
+    $scope.ministros = $firebaseArray(Ref.child('pessoa').orderByChild('funcao').equalTo('MINISTRO'));
+
   });

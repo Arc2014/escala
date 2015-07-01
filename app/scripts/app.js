@@ -11,7 +11,8 @@ angular.module('escalaAppApp', [
     'firebase',
     'firebase.ref',
     'firebase.auth',
-    'ui.calendar'
+    'ui.calendar',
+    'ui.bootstrap.datetimepicker'
   ]).run(['$rootScope', 'Auth', '$location', function ($rootScope, Auth, $location) {
     $rootScope.logout = function() { Auth.$unauth();
       $location.path('/');
