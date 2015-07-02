@@ -46,11 +46,11 @@ angular.module('escalaAppApp')
       })
       .when('/escala', {
         templateUrl: 'views/escala/escala.html',
-        controller: 'PessoaCtrl'
+        controller: 'EscalaCtrl'
       })
       .when('/escala/:uid', {
         templateUrl: 'views/escala/escala.html',
-        controller: 'PessoaCtrl'
+        controller: 'EscalaCtrl'
       })
       .otherwise({redirectTo: '/'});
   }])

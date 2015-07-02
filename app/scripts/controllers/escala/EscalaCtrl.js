@@ -1,14 +1,57 @@
 'use strict';
 
 angular.module('escalaAppApp')
-  .controller('EscalasCtrl',['$scope', 'Ref', '$firebaseArray', 'EscalaService',  function ($scope, Ref, $firebaseArray, EscalaService) {
+  .controller('EscalaCtrl',['$scope','$q', 'Ref', 'EscalaService', '$firebaseObject',
+    function ($scope, $q, Ref, EscalaService, $firebaseObject) {
     $scope.awesomeThings = ['HTML5 Boilerplate', 'AngularJS', 'Karma'];
-    var uid;
     $scope.mensagemSucesso = '';
     $scope.mensagensErro = [];
+    var uid;
 
-    $scope.padres = $firebaseArray(Ref.child('pessoa').orderByChild('funcao').equalTo('PADRE'));
-    $scope.coroinhas = $firebaseArray(Ref.child('pessoa').orderByChild('funcao').equalTo('COROINHA'));
-    $scope.ministros = $firebaseArray(Ref.child('pessoa').orderByChild('funcao').equalTo('MINISTRO'));
+    var init = function () {
+      uid = uid = new Date().getTime().toString();
+      $scope.escala = $firebaseObject(Ref.child('escala').child(uid));
+      EscalaService.carregarListaPadres().then(function (padres) {
+        $scope.padres = padres;
+      });
+      EscalaService.carregarListaCoroinhas().then(function (coroinhas) {
+        $scope.coroinhas = coroinhas;
+      });;
+      EscalaService.carregarListaMinistros().then(function (ministros) {
+        $scope.ministros =  ministros;
+      });;
+    };
 
+    $scope.abrirModal = function () {
+      $scope.indice = '';
+      $scope.evento = {};
+      $('#idModalEvento').modal('show');
+    };
+
+    $scope.adicionarEvento = function() {
+      if(!$scope.escala.eventos){
+        $scope.escala.eventos = [];
+      }
+      $scope.escala.eventos.push($scope.evento);
+      $('#idModalEvento').modal('hide');
+    };
+
+    $scope.editarEvento = function(index) {
+      $scope.evento = angular.copy($scope.escala.eventos[index]);
+      $scope.indice = index
+      $('#idModalEvento').modal('show');
+    };
+
+    $scope.alterarEvento = function () {
+      $scope.escala.eventos[$scope.indice] = angular.copy($scope.evento);
+      $('#idModalEvento').modal('hide');
+    };
+
+    $scope.salvar = function () {
+      $scope.escala.$save().then(function () {
+        $scope.mensagemSucesso = 'Escala salva com sucesso!'
+      });
+    };
+
+    init();
   }]);

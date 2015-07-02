@@ -15,10 +15,9 @@
     <form id="escalaForm" name="escalaForm" class="form-horizontal">
 
       <div class="form-group">
-        <label class="col-sm-1 control-label text-left">Código: {{escala.uid}}</label>
-        <label for="mes" class="col-sm-1 control-label">Mês: <span style="color: #ac2925">*</span></label>
+        <label for="mes" class="col-sm-1 control-label">Mês:<span style="color: #ac2925">*</span></label>
         <div class="col-sm-2">
-          <select required id="mes" class="form-control">
+          <select ng-model="escala.mes" required id="mes" class="form-control">
             <option value="">Selecione...</option>
             <option value="1">Janeiro</option>
             <option value="2">Fevereiro</option>
@@ -34,13 +33,13 @@
             <option value="12">Dezembro</option>
           </select>
         </div>
-        <label for="ano" class="col-sm-1 control-label">Ano: <span style="color: #ac2925">*</span></label>
+        <label for="ano" class="col-sm-1 control-label">Ano:<span style="color: #ac2925">*</span></label>
         <div class="col-sm-3">
           <input type="number" class="form-control" id="ano" placeholder="Ano" ng-model="escala.ano" required/>
         </div>
-        <label for="ano" class="col-sm-1 control-label">Igreja: <span style="color: #ac2925">*</span></label>
+        <label for="ano" class="col-sm-1 control-label">Igreja:<span style="color: #ac2925">*</span></label>
         <div class="col-sm-3">
-          <select required class="form-control">
+          <select required class="form-control" ng-model="escala.igreja">
             <option value="">Selecione...</option>
             <option value="MATRIZ">Matriz</option>
             <option value="ROSARIO">Rosário</option>
@@ -54,16 +53,16 @@
           <th class="text-center">Ministros</th>
           <th class="text-center">Coroinhas</th>
           <th class="text-center">
-            <button title="Adicionar Novo" type="button" class="btn btn-primary glyphicon glyphicon-play-circle" data-toggle="modal" data-target="#idModalEvento"/>
+            <button title="Adicionar Novo" ng-click="abrirModal()" type="button" class="btn btn-primary glyphicon glyphicon-play-circle" data-toggle="modal"/>
           </th>
-          <tr class="text-center" ng-class-odd="'info'" ng-class-even="''">
-            <td class="col-md-1" >teste</td>
-            <td class="col-md-3">teste</td>
-            <td class="col-md-1">teste</td>
-            <td class="col-md-4">teste</td>
+          <tr ng-repeat="evento in escala.eventos track by $index" class="text-center" ng-class-odd="'info'" ng-class-even="''">
+            <td class="col-md-1" >{{evento.dataHora | date: 'dd-MM-yyyy - H:mm'}}</td>
+            <td class="col-md-3"><span ng-repeat="padre in evento.padres">{{padre.nome}}</span></td>
+            <td class="col-md-1"><span ng-repeat="ministro in evento.ministros">{{ministro.nome}}</span></td>
+            <td class="col-md-4"><span ng-repeat="coroinha in evento.coroinhas">{{coroinha.nome}}</span></td>
             <td class="col-md-1 input-group-btn">
-              <a href="#/escala/{{e.uid}}" class="btn btn-warning glyphicon glyphicon-pencil"></a>
-              <button type="button" class="btn btn-danger glyphicon glyphicon-trash" ng-click="escalas.$remove(e)"/>
+              <button ng-click="editarEvento($index)" class="btn btn-warning glyphicon glyphicon-pencil"></button>
+              <button type="button" class="btn btn-danger glyphicon glyphicon-trash" ng-click="escala.eventos.splice($index, 1)"/>
             </td>
           </tr>
         </table>
@@ -97,27 +96,28 @@
           </ul>
         </div>
         <div class="form-group">
-          <select class="form-control" id="padre" ng-model="evento.padres"
+          <label for="padre" class="control-label">Padres: </label>
+          <select class="form-control" multiple id="padre" ng-model="evento.padres"
                   ng-options="padre.nome for padre in padres track by padre.uid">
-            <option>PADRES</option>
           </select>
         </div>
         <div class="form-group">
-          <select type="text" class="form-control" id="ministro" placeholder="MINISTROS" ng-model="evento.ministros"
+          <label for="padre" class="control-label">Ministros: </label>
+          <select type="text" multiple class="form-control" id="ministro" placeholder="MINISTROS" ng-model="evento.ministros"
                   ng-options="ministro.nome for ministro in ministros track by ministro.uid">
-            <option>MINISTROS</option>
           </select>
         </div>
         <div class="form-group">
-          <select type="text" class="form-control" id="coroinha" placeholder="MINISTROS" ng-model="evento.ministros"
-                  ng-options="ministro.nome for ministro in ministros track by ministro.uid">
-            <option>COROINHAS</option>
+          <label for="padre" class="control-label">Coroinhas: </label>
+          <select type="text" multiple class="form-control" id="coroinha" placeholder="MINISTROS" ng-model="evento.coroinhas"
+                  ng-options="coroinha.nome for coroinha in coroinhas track by coroinha.uid">
           </select>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" ng-show="!indice && indice !== 0" class="btn btn-primary" ng-click="adicionarEvento()">Adicionar</button>
+        <button type="button" ng-show="indice || indice === 0" class="btn btn-primary" ng-click="alterarEvento()">Alterar</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

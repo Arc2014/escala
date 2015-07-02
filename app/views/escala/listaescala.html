@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-md-10">
+    <h1 class="h1">Escalas Cadastradas</h1>
+  </div>
+  <div class="col-md-2 text-right">
+    <a href="#/escala" class="btn btn-success">Cadastrar</a>
+  </div>
+</div>
+<div class="row">
+  <form>
+    <table class="table table-hover">
+      <th class="text-center">Mês/Ano</th>
+      <th class="text-center">Igreja</th>
+      <th class="text-center">Periodo</th>
+      <tr ng-repeat="p in pessoas | reverse" class="text-center" ng-class-odd="'info'" ng-class-even="''">
+        <td class="col-md-1" >teste</td>
+        <td class="col-md-3">teste</td>
+        <td class="col-md-1">teste</td>
+        <td class="col-md-4">teste</td>
+        <td class="col-md-1 input-group-btn">
+          <a href="#/escala/{{e.uid}}" class="btn btn-warning glyphicon glyphicon-pencil"></a>
+          <button type="button" class="btn btn-danger glyphicon glyphicon-trash" ng-click="escalas.$remove(e)"/>
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>

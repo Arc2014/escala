@@ -1,14 +1,14 @@
 'use strict';
 
 angular.module('escalaAppApp')
-  .controller('PessoaCtrl', ['$scope', '$routeParams', 'Ref', '$firebaseObject', 'uiCalendarConfig', '$firebaseArray',
-    function ($scope, $routeParams, Ref, $firebaseObject, uiCalendarConfig, $firebaseArray) {
+  .controller('PessoaCtrl', ['$scope', '$routeParams', 'Ref', '$firebaseObject', 'uiCalendarConfig', '$firebaseArray', 'EscalaService',
+    function ($scope, $routeParams, Ref, $firebaseObject, uiCalendarConfig, $firebaseArray, EscalaService) {
       var uid;
       $scope.agenda = $scope.agenda || [];
       $scope.mensagemSucesso = '';
       $scope.mensagensErro = [];
       $scope.impedimentos = [];
-
+      $scope.ministros = [];
       function montarImpedimentosParaSalvar (jsonsImpedimento) {
         var datasImpedimento = [];
         angular.forEach(jsonsImpedimento, function (item) {
@@ -86,6 +86,6 @@ angular.module('escalaAppApp')
             $scope.mensagensErro.push('Ocorreu um erro ao tentar salvar esta Pessoa');
           });
       };
+      $scope.ministros = EscalaService.carregarListaMinistros();
 
-      $scope.ministros = $firebaseArray(Ref.child('pessoa').orderByChild('funcao').equalTo('MINISTRO'));
   }]);
